@@ -166,7 +166,6 @@
   },
   "publishConfig": {
     "access": "public",
-    "tag": "next-8",
     "executableFiles": [
       "./dist/node-gyp-bin/node-gyp",
       "./dist/node-gyp-bin/node-gyp.cmd",
