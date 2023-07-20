@@ -1,5 +1,5 @@
 {
-  "name": "pnpm",
+  "name": "@hokify/pnpm",
   "description": "Fast, disk space efficient package manager",
   "version": "8.6.7",
   "bin": {
