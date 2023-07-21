@@ -1,3 +1,26 @@
+# NOTE BY HOKIFY
+
+This is a fork of pnpm to fix `EMFILE` errors.
+
+They are thrown
+
+- always
+- during `pnpm install`
+- in Windows
+- when a package.json was changed on the developers machine
+
+And:
+
+- sometimes
+- during `pnpm deploy`
+- in Ubuntu in CD (GitHub Actions)
+- when `worker` is deployed
+
+The main branch of this repo is switched to the version we use in our hokify monorepo.  
+A "hotfix" was applied for the `EMFILE` error, and the package [./pnpm](./pnpm) published publicly to the npmjs.com registry, name [`@hokify/pnpm`](https://www.npmjs.com/package/@hokify/pnpm).
+
+# ORIGINAL README FROM HERE ON
+
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct.svg)](https://stand-with-ukraine.pp.ua)
 
 [简体中文](https://pnpm.io/zh/) |
