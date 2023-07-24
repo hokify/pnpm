@@ -1,9 +1,21 @@
+import fs from 'fs'
+import PQueue from 'p-queue'
 import { promisify } from 'util'
 import gfs from 'graceful-fs'
 
-import fs from 'fs'
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-fs.promises.readFile = promisify(gfs.readFile) as any
+const fileReadQueue = new PQueue({
+  /**
+   * with concurrency 128, EMFile errors still occur
+   * with concurrency 16, they do not occur anymore
+   */
+  concurrency: 16,
+})
+
+const origReadFile = fs.promises.readFile
+const newReadFile: typeof fs.promises.readFile = ((...args) => {
+  return fileReadQueue.add(() => origReadFile.apply(fs.promises, args))
+}) as typeof fs.promises.readFile
+fs.promises.readFile = newReadFile
 
 export default { // eslint-disable-line
   copyFile: promisify(gfs.copyFile),
